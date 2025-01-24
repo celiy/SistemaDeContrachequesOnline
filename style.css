@@ -1,0 +1,202 @@
+* {
+  padding: 0;
+  margin: 0;
+  color: #1a1f36;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Ubuntu, sans-serif;
+}
+body {
+  min-height: 100%;
+  background-color: #ffffff;
+}
+h1 {
+  letter-spacing: -1px;
+}
+a {
+  color: #5469d4;
+  text-decoration: unset;
+}
+form {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  width: 30vw;
+  margin: 0px auto;
+  margin-top: 1rem;
+  margin-bottom: 6rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 22px;
+  padding-right: 22px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px,
+    rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+}
+span {
+  display: block;
+  font-size: 20px;
+  line-height: 28px;
+  color: #1a1f36;
+}
+label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+}
+input {
+  font-size: 16px;
+  line-height: 28px;
+  margin-bottom: 1.4rem;
+  padding: 8px;
+  width: 100%;
+  height: 1rem;
+  min-height: 44px;
+  border: unset;
+  border-radius: 4px;
+  outline-color: rgb(84 105 212 / 0.5);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+input[type="submit"] {
+  background-color: rgb(84, 105, 212);
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, rgb(84, 105, 212) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 1.4rem;
+  cursor: pointer;
+}
+.field-checkbox input {
+  width: 20px;
+  height: 15px;
+  margin-right: 5px;
+  box-shadow: unset;
+  min-height: unset;
+}
+.field-checkbox label {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+a.ssolink {
+  display: block;
+  text-align: center;
+  font-weight: 600;
+}
+.footer-link span {
+  font-size: 14px;
+  text-align: center;
+}
+.listing a {
+  color: #697386;
+  font-weight: 600;
+  margin: 0 10px;
+}
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 75px;
+  background-color: rgb(84, 105, 212);
+  box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px,
+    rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+}
+nav .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 90%;
+  background-color: rgb(84, 105, 212);
+  margin: auto;
+}
+nav .navbar .logo a {
+  color: #fff;
+  font-size: 27px;
+  font-weight: 600;
+  text-decoration: none;
+}
+nav .navbar .menu {
+  display: flex;
+}
+.navbar .menu li {
+  list-style: none;
+  margin: 0 15px;
+}
+.navbar .menu li a {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.itens-menu{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  width: 86%;
+  margin: auto;
+  margin-top: 7rem;
+  background-color: rgb(84, 105, 212);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px 0px;
+}
+.itens-menu div {
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.6rem;
+  border-radius: 10px;
+  transition: all 0.1s ease-in-out;
+}
+.itens-menu div:hover {
+  background-color: rgb(98, 119, 228);
+}
+.itens-menu div h4 {
+  color: #fff;
+}
+
+.table_component {
+  overflow: auto;
+  width: 86%;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 6rem;
+  box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px,
+  rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+  border-radius: 10px;
+}.table_component table {
+  border: 1px solid #dededf;
+  height: 100%;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 1px;
+  text-align: left;
+}.table_component caption {
+  caption-side: top;
+  text-align: left;
+}.table_component th {
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(84, 105, 212);
+  color:rgb(255, 255, 255);
+  padding: 5px;
+}.table_component td {
+  border: 1px solid #dededf;
+  background-color: #ffffff;  
+  color: #000000;
+  padding: 5px;
+}

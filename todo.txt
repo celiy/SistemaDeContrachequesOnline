@@ -1,0 +1,6 @@
+Tarefa a serem feitas:
+
+Requisitos Gerais (front-end)
+    Devem ser desenvolvidas no mínimo 5 (cinco) páginas HTML utilizando de forma correta os elementos estudados;
+
+~ Página Inicial (Home/Index):

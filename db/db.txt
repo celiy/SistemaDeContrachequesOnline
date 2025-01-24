@@ -1,0 +1,31 @@
+CREATE TABLE usuario (
+id_admin INT PRIMARY KEY,
+senha VARCHAR(255),
+email VARCHAR(255),
+ultimo_acesso DATE,
+status_ativo BOOLEAN
+);
+
+CREATE TABLE funcionario (
+id_funcionario INT PRIMARY KEY,
+nome VARCHAR(255),
+email VARCHAR(255),
+senha VARCHAR(255),
+cpf VARCHAR(11),
+data_admissao DATE,
+departamento VARCHAR(255),
+cargo VARCHAR(255),
+salario_base DECIMAL(10, 2)
+);
+
+CREATE TABLE contracheque (
+id_contraqueque INT PRIMARY KEY, 
+id_funcionario INT,
+mes_referencia VARCHAR(7),
+data_geracao DATE,
+salario_base DECIMAL(10, 2),
+total_vencimentos DECIMAL(10, 2),
+total_descontos DECIMAL(10, 2),
+salario_liquido DECIMAL(10, 2)
+);
+
