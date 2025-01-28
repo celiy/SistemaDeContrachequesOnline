@@ -57,7 +57,6 @@ function drawTableAdmins() {
   });
   table.appendChild(tbody);
 
-  // Append the table to the page
   const section = document.getElementById("admins");
   section.appendChild(table);
 }

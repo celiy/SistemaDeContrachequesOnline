@@ -15,7 +15,7 @@
 
     <?php 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        include 'db_users.php';
+        include 'db_principal.php';
         $email = $_POST['email'];
 
         $query = $conexao->prepare("SELECT email FROM funcionario WHERE email = ?");

@@ -3,7 +3,7 @@
 <head>
 <body>
     <?php
-        include 'db_cheque.php';
+        include 'db_principal.php';
         $query = $conexao->prepare("SELECT id_contracheque, id_funcionario, mes_referencia, data_geracao, 
         salario_base, total_vencimentos, total_descontos, salario_liquido FROM contracheque");
         $query->execute();

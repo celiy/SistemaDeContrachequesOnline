@@ -20,7 +20,7 @@ if (!isset($_SESSION['id_funcionario'])) {
 
     <div id="contracheques_table" style="margin-top: 10rem;">
         <?php
-            include 'db_cheque.php';
+            include 'db_principal.php';
 
             if (isset($_SESSION['id_funcionario'])) {
                 $id_funcionario = $_SESSION['id_funcionario'];
@@ -46,7 +46,7 @@ if (!isset($_SESSION['id_funcionario'])) {
 
         <div>
             <?php
-            include 'db_cheque.php';
+            include 'db_principal.php';
             if (isset($_SESSION['id_funcionario'])) {
                 $id_funcionario = $_SESSION['id_funcionario'];
                 $query = $conexao->prepare("SELECT id_contracheque_pdf, id_funcionario, filename, 

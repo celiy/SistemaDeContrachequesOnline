@@ -1,4 +1,4 @@
-CREATE TABLE usuario (
+CREATE TABLE admin (
 id_admin INT PRIMARY KEY,
 senha VARCHAR(255),
 email VARCHAR(255),
@@ -19,7 +19,7 @@ salario_base DECIMAL(10, 2)
 );
 
 CREATE TABLE contracheque (
-id_contraqueque INT PRIMARY KEY, 
+id_contracheque INT PRIMARY KEY, 
 id_funcionario INT,
 mes_referencia VARCHAR(7),
 data_geracao DATE,
@@ -29,3 +29,85 @@ total_descontos DECIMAL(10, 2),
 salario_liquido DECIMAL(10, 2)
 );
 
+CREATE TABLE contato_admin (
+    email VARCHAR(255) PRIMARY KEY
+);
+
+DELIMITER $$
+
+CREATE TRIGGER before_insert_id_funcionario
+BEFORE INSERT ON funcionario
+FOR EACH ROW
+BEGIN
+    DECLARE max_id INT;
+    SELECT COALESCE(MAX(id_funcionario), 0) INTO max_id FROM funcionario;
+    SET NEW.id_funcionario = max_id + 1;
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE TRIGGER before_insert_id_contracheque
+BEFORE INSERT ON contracheque
+FOR EACH ROW
+BEGIN
+    DECLARE max_id INT;
+    SELECT COALESCE(MAX(id_contracheque), 0) INTO max_id FROM contracheque;
+    SET NEW.id_contracheque = max_id + 1;
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE TRIGGER before_insert_id_admin
+BEFORE INSERT ON admin
+FOR EACH ROW
+BEGIN
+    DECLARE max_id INT;
+    SELECT COALESCE(MAX(id_admin), 0) INTO max_id FROM admin;
+    SET NEW.id_admin = max_id + 1;
+END$$
+
+DELIMITER ;
+
+CREATE TABLE contracheque_pdf(
+	id_contracheque_pdf INT PRIMARY KEY,
+    id_funcionario INT,
+    filename VARCHAR(255),
+    time_stamp TIMESTAMP
+);
+
+DELIMITER $$
+
+CREATE TRIGGER before_insert_id_contracheque_pdf
+BEFORE INSERT ON contracheque_pdf
+FOR EACH ROW
+BEGIN
+    DECLARE max_id INT;
+    SELECT COALESCE(MAX(id_contracheque_pdf), 0) INTO max_id FROM contracheque_pdf;
+    SET NEW.id_contracheque_pdf = max_id + 1;
+END$$
+
+DELIMITER ;
+
+INSERT INTO `admin`(`senha`, `email`, `ultimo_acesso`, `status_ativo`) 
+VALUES ('admin','admin@email','2025-01-05',1);
+
+INSERT INTO `funcionario`(`nome`, `email`, `senha`, `cpf`, `data_admissao`, `departamento`, `cargo`, `salario_base`) 
+VALUES ('Diogo','diogo@email','123','00044433311','2025-01-08','Vendas','Vendedor',2000);
+INSERT INTO `funcionario`(`nome`, `email`, `senha`, `cpf`, `data_admissao`, `departamento`, `cargo`, `salario_base`) 
+VALUES ('Aniele','aniele@email','456','00022233388','2025-01-09','Financeiro','Contadora',3000);
+INSERT INTO `funcionario`(`nome`, `email`, `senha`, `cpf`, `data_admissao`, `departamento`, `cargo`, `salario_base`) 
+VALUES ('Romenei','romenei@email','789','11122233311','2025-01-06','Tecnologia','Suporte',1000);
+
+INSERT INTO `contracheque`(`id_funcionario`, `mes_referencia`, `data_geracao`, 
+`salario_base`, `total_vencimentos`, `total_descontos`, `salario_liquido`) VALUES 
+(1,'Janeiro','2025-01-16',2000,15,100,1500);
+INSERT INTO `contracheque`(`id_funcionario`, `mes_referencia`, `data_geracao`, 
+`salario_base`, `total_vencimentos`, `total_descontos`, `salario_liquido`) VALUES 
+(2,'Março','2025-01-14',3000,256,20,100);
+INSERT INTO `contracheque`(`id_funcionario`, `mes_referencia`, `data_geracao`, 
+`salario_base`, `total_vencimentos`, `total_descontos`, `salario_liquido`) VALUES 
+(3,'Junho','2025-01-15',1000,125,1000,1800);

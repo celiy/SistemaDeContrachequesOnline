@@ -3,8 +3,8 @@
 <head>
 <body>
     <?php
-        include 'db_users.php';
-        $query = $conexao->prepare("SELECT id_funcionario, nome, email, cpf, data_emissao,
+        include 'db_principal.php';
+        $query = $conexao->prepare("SELECT id_funcionario, nome, email, cpf, data_admissao,
                 departamento, cargo, salario_base FROM funcionario");
         $query->execute();
         $funcionarios = $query->get_result()->fetch_all(MYSQLI_ASSOC);

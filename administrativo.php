@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $senha_digitada = $senha;
 
         // Inclua a conexão com o banco de dados
-        include 'db_users.php';
+        include 'db_principal.php';
         $funcionario = null;
         try {
             // Verifica se o e-mail existe no banco de dados
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             try {
                 // Insere o funcionário no banco de dados 
                 $sql = "INSERT INTO funcionario (nome, email, senha, cpf, 
-                        data_emissao, departamento, cargo, salario_base) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                        data_admissao, departamento, cargo, salario_base) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = $conexao->prepare($sql);
                 $stmt->execute([$nome, $email, $senha_digitada, $cpf, $admissao, $departamento, $cargo, $salario]);
                 header("Location: " . $_SERVER['PHP_SELF']);
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $salario = $_POST['salario'];
 
         // Inclua a conexão com o banco de dados
-        include 'db_users.php';
+        include 'db_principal.php';
         $funcionario = null;
         try {
             // Verifica se o e-mail existe no banco de dados
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             try {
                 // Atualiza o funcionário no banco de dados 
                 $sql = "UPDATE funcionario SET nome = ?, email = ?, senha = ?, cpf = ?, 
-                        data_emissao = ?, departamento = ?, cargo = ?, salario_base = ?
+                        data_admissao = ?, departamento = ?, cargo = ?, salario_base = ?
                         WHERE id_funcionario = ?";
                 $stmt = $conexao->prepare($sql);
                 $stmt->execute([$nome, $email, $senha_digitada, $cpf, $admissao, $departamento, $cargo, $salario, $func_id]);
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $func_id = null;
         try {
-            include 'db_users.php';
+            include 'db_principal.php';
             // Verifica se o funcionário existe no banco de dados
             $query = $conexao->prepare("SELECT id_funcionario FROM funcionario WHERE id_funcionario = ?");
             $query->bind_param("s", $funcionario_id);
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($func_id) {
             try {
-                include 'db_cheque.php';
+                include 'db_principal.php';
                 // Atualiza o funcionário no banco de dados 
                 $sql = "UPDATE contracheque SET mes_referencia = ?, data_geracao = ?, salario_base = ?, total_vencimentos = ?, total_descontos = ?, salario_liquido = ?
                         WHERE id_contracheque = ?";
@@ -136,11 +136,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $senha_digitada = $senha;
 
         // Inclua a conexão com o banco de dados
-        include 'db_users.php';
+        include 'db_principal.php';
         $admin = null;
         try {
             // Verifica se o e-mail existe no banco de dados
-            $query = $conexao->prepare("SELECT email FROM usuario WHERE email = ?");
+            $query = $conexao->prepare("SELECT email FROM admin WHERE email = ?");
             $query->bind_param("s", $email);
             $query->execute();
             $admin = $query->get_result()->fetch_assoc();
@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             try {
                 // Insere o funcionário no banco de dados 
-                $sql = "INSERT INTO usuario (email, senha, ultimo_acesso, status_ativo) VALUES (?, ?, ?, ?)";
+                $sql = "INSERT INTO admin (email, senha, ultimo_acesso, status_ativo) VALUES (?, ?, ?, ?)";
                 $stmt = $conexao->prepare($sql);
                 $data_atual = date('Y-m-d H:i:s');
                 $stmt->execute([$email, $senha_digitada, $data_atual, 1]);
@@ -175,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $func_id = null;
         try {
-            include 'db_users.php';
+            include 'db_principal.php';
             // Verifica se o funcionário existe no banco de dados
             $query = $conexao->prepare("SELECT id_funcionario FROM funcionario WHERE id_funcionario = ?");
             $query->bind_param("s", $funcionario_id);
@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($func_id) {
             try {
-                include 'db_cheque.php';
+                include 'db_principal.php';
                 // Insere o funcionário no banco de dados 
                 $sql = "INSERT INTO contracheque (mes_referencia, data_geracao, salario_base, total_vencimentos,
                 total_descontos, salario_liquido, id_funcionario)
@@ -208,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $func_id = null;
         try {
-            include 'db_users.php';
+            include 'db_principal.php';
             // Verifica se o funcionário existe no banco de dados
             $query = $conexao->prepare("SELECT id_funcionario FROM funcionario WHERE id_funcionario = ?");
             $query->bind_param("s", $funcionario_id);
@@ -220,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($func_id) {
             try {
-                include 'db_users.php';
+                include 'db_principal.php';
                 // Deleta o funcionário no banco de dados 
                 $sql = "DELETE FROM funcionario WHERE id_funcionario = ?";
                 $stmt = $conexao->prepare($sql);
@@ -239,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $ch_id = null;
         try {
-            include 'db_cheque.php';
+            include 'db_principal.php';
             $query = $conexao->prepare("SELECT id_contracheque FROM contracheque WHERE id_contracheque = ?");
             $query->bind_param("s", $cheque_id);
             $query->execute();
@@ -250,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($ch_id) {
             try {
-                include 'db_cheque.php';
+                include 'db_principal.php';
                 // Deleta o funcionário no banco de dados 
                 $sql = "DELETE FROM contracheque WHERE id_contracheque = ?";
                 $stmt = $conexao->prepare($sql);
@@ -269,9 +269,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $usr_id = null;
         try {
-            include 'db_users.php';
+            include 'db_principal.php';
             // Verifica se o funcionário existe no banco de dados
-            $query = $conexao->prepare("SELECT id_admin FROM usuario WHERE id_admin = ?");
+            $query = $conexao->prepare("SELECT id_admin FROM admin WHERE id_admin = ?");
             $query->bind_param("s", $admin_id);
             $query->execute();
             $usr_id = $query->get_result()->fetch_assoc();
@@ -281,9 +281,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($usr_id) {
             try {
-                include 'db_users.php';
+                include 'db_principal.php';
                 // Deleta o funcionário no banco de dados 
-                $sql = "DELETE FROM usuario WHERE id_admin = ?";
+                $sql = "DELETE FROM admin WHERE id_admin = ?";
                 $stmt = $conexao->prepare($sql);
                 $stmt->bind_param("i", $admin_id);
                 $stmt->execute();
@@ -303,7 +303,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $func_id = null;
         try {
-            include 'db_users.php';
+            include 'db_principal.php';
             // Verifica se o funcionário existe no banco de dados
             $query = $conexao->prepare("SELECT id_funcionario FROM funcionario WHERE id_funcionario = ?");
             $query->bind_param("s", $func_id_pdf);
@@ -324,7 +324,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $folder_path = $targetDir;
                     $time_stamp = date('Y-m-d H:i:s');
                     try {
-                        include 'db_cheque.php';
+                        include 'db_principal.php';
                         $sql = "INSERT INTO contracheque_pdf (filename, folder_path, time_stamp, id_funcionario) 
                         VALUES (?, ?, ?, ?)";
                         $stmt = $conexao->prepare($sql);
@@ -343,7 +343,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cheque_pdf_id = $_POST['id_cheque_pdf'];
 
         try {
-            include 'db_cheque.php';
+            include 'db_principal.php';
 
             // Pega o caminho do arquivo que sera deletado
             $sql = "SELECT folder_path, filename FROM contracheque_pdf WHERE id_contracheque_pdf = ?";
@@ -373,7 +373,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($_POST['form_type'] == 'update_password'){
             $func_email = null;
             try {
-                include 'db_users.php';
+                include 'db_principal.php';
                 $func_email = $_POST['email_func'];
                 $senha = $_POST['password'];
                 $senha_digitada = $senha;
@@ -385,7 +385,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $erro = $e->getMessage();
             }
             try {
-                include 'db_users.php';
+                include 'db_principal.php';
                 $sql = "DELETE FROM contato_admin WHERE email = ?";
                 $stmt = $conexao->prepare($sql);
                 $stmt->bind_param("s", $func_email);
@@ -447,7 +447,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <?php
         if (isset($erro_funcionario)) {
-            echo "<p style='color:red; text-align: center;'>$erro</p>";
+            echo "<p style='color:red; text-align: center;'>$erro_funcionario</p>";
         }
         ?>
 
@@ -505,7 +505,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     
                     ?>
                     <?php
-                    include 'db_users.php';
+                    include 'db_principal.php';
                     $query = $conexao->prepare("SELECT email FROM contato_admin");
                     $query->execute();
                     $emails = $query->get_result()->fetch_assoc();
@@ -541,8 +541,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1 style="text-align: center; margin-top: 3rem;">Cadastro de administradores</h1>
 
         <?php
-        if (isset($erro)) {
-            echo "<p style='color:red; text-align: center;'>$erro</p>";
+        if (isset($erro_admin)) {
+            echo "<p style='color:red; text-align: center;'>$erro_admin</p>";
         }
         ?>
 
@@ -612,7 +612,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php include 'contracheque_table.php'; ?>
         <div>
             <?php
-            include 'db_cheque.php';
+            include 'db_principal.php';
             $query = $conexao->prepare("SELECT id_contracheque_pdf, id_funcionario, filename, 
             time_stamp FROM contracheque_pdf");
             $query->execute();

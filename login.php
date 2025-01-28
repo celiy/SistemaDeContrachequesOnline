@@ -20,10 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $senha_digitada = $senha;
 
     // Conexão com o banco de dados
-    include 'db_users.php';
+    include 'db_principal.php';
 
     // Verifica se o e-mail existe no banco de dados
-    $query = $conexao->prepare("SELECT email, senha, id_admin FROM usuario WHERE email = ?");
+    $query = $conexao->prepare("SELECT email, senha, id_admin FROM admin WHERE email = ?");
     $query->bind_param("s", $email);
     $query->execute();
     $usuario = $query->get_result()->fetch_assoc();

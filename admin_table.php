@@ -3,8 +3,8 @@
 <head>
 <body>
     <?php
-        include 'db_users.php';
-        $query = $conexao->prepare("SELECT id_admin, email, ultimo_acesso, status_ativo FROM usuario");
+        include 'db_principal.php';
+        $query = $conexao->prepare("SELECT id_admin, email, ultimo_acesso, status_ativo FROM admin");
         $query->execute();
         $usuarios = $query->get_result()->fetch_all(MYSQLI_ASSOC);
         $table = json_encode($usuarios); 
